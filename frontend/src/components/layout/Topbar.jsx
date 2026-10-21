@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Activity, ShieldCheck, Database, Server } from 'lucide-react';
-import axios from 'axios';
+import { systemApi } from '../../api/client';
 
 export default function Topbar({ title, subtitle }) {
   const [serverStatus, setServerStatus] = useState('checking');
 
   useEffect(() => {
-    axios.get('/api/health')
+    systemApi.checkHealth()
       .then(() => setServerStatus('connected'))
       .catch(() => setServerStatus('disconnected'));
   }, []);

@@ -12,7 +12,7 @@ import {
   Calendar,
   RotateCcw,
 } from 'lucide-react';
-import { loansApi, booksApi, membersApi } from '../api/client';
+import { loansApi, booksApi, membersApi, getApiUrl } from '../api/client';
 
 export default function CirculationPage() {
   const [tab, setTab] = useState('active'); // 'active' | 'overdue' | 'all'
@@ -108,7 +108,7 @@ export default function CirculationPage() {
   };
 
   const handleExport = (format) => {
-    window.open(`/api/loans/export/${format}`, '_blank');
+    window.open(getApiUrl(`/loans/export/${format}`), '_blank');
   };
 
   return (

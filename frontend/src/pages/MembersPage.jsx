@@ -14,7 +14,7 @@ import {
   Calendar,
   UserCheck,
 } from 'lucide-react';
-import { membersApi } from '../api/client';
+import { membersApi, getApiUrl } from '../api/client';
 
 export default function MembersPage() {
   const [members, setMembers] = useState([]);
@@ -113,7 +113,7 @@ export default function MembersPage() {
   };
 
   const handleExport = (format) => {
-    window.open(`/api/members/export/${format}`, '_blank');
+    window.open(getApiUrl(`/members/export/${format}`), '_blank');
   };
 
   return (

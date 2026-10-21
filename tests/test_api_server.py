@@ -188,3 +188,18 @@ def test_concurrency_benchmark_endpoint():
     assert "sequential_time_sec" in data["data"]
     assert "threading_time_sec" in data["data"]
     assert "multiprocessing_time_sec" in data["data"]
+
+
+def test_cors_headers_for_vercel_origin():
+    """Verify CORS preflight correctly authorizes the Vercel production frontend."""
+    vercel_origin = "https://smart-library-management-and-book-analytics-system-m9b1s5aqa.vercel.app"
+    headers = {
+        "Origin": vercel_origin,
+        "Access-Control-Request-Method": "POST",
+        "Access-Control-Request-Headers": "content-type"
+    }
+    res = client.options("/api/auth/login", headers=headers)
+    assert res.status_code == 200
+    assert res.headers.get("access-control-allow-origin") == vercel_origin
+    assert res.headers.get("access-control-allow-credentials") == "true"
+

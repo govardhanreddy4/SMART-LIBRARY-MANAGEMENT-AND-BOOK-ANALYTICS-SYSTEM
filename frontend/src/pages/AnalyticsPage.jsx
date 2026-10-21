@@ -21,7 +21,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import { analyticsApi, dashboardApi } from '../api/client';
+import { analyticsApi, dashboardApi, getApiUrl } from '../api/client';
 
 export default function AnalyticsPage() {
   const [catData, setCatData] = useState([]);
@@ -58,7 +58,7 @@ export default function AnalyticsPage() {
   }, []);
 
   const handleExportReport = (format) => {
-    window.open(`/api/reports/download/${format}`, '_blank');
+    window.open(getApiUrl(`/reports/download/${format}`), '_blank');
   };
 
   if (loading) {

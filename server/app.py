@@ -26,16 +26,28 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS configuration allowing local Vite development server and production builds
+import os
+
+# CORS configuration: allow local dev, explicit Vercel deployment, and FRONTEND_URL env var
+configured_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://smart-library-management-and-book-analytics-system-m9b1s5aqa.vercel.app",
+]
+
+frontend_env = os.getenv("FRONTEND_URL", "").strip()
+if frontend_env:
+    for origin in frontend_env.split(","):
+        origin = origin.strip()
+        if origin and origin not in configured_origins:
+            configured_origins.append(origin)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "*"
-    ],
+    allow_origins=configured_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

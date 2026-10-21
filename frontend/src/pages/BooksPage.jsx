@@ -16,7 +16,7 @@ import {
   Code2,
   Layers,
 } from 'lucide-react';
-import { booksApi } from '../api/client';
+import { booksApi, getApiUrl } from '../api/client';
 
 export default function BooksPage() {
   const [books, setBooks] = useState([]);
@@ -166,7 +166,7 @@ export default function BooksPage() {
   };
 
   const handleExport = (format) => {
-    window.open(`/api/books/export/${format}`, '_blank');
+    window.open(getApiUrl(`/books/export/${format}`), '_blank');
   };
 
   return (

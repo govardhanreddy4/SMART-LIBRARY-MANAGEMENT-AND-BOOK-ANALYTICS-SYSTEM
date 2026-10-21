@@ -82,4 +82,16 @@ export const concurrencyApi = {
     api.post('/concurrency/benchmark', { total_simulations: simulations, num_chunks: chunks }),
 };
 
+export const systemApi = {
+  checkHealth: () => api.get('/health'),
+};
+
+export const getApiUrl = (path = '') => {
+  let cleanPath = path.startsWith('/') ? path : `/${path}`;
+  if (baseURL.endsWith('/api') && cleanPath.startsWith('/api/')) {
+    cleanPath = cleanPath.slice(4);
+  }
+  return `${baseURL}${cleanPath}`;
+};
+
 export default api;
