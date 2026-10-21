@@ -205,3 +205,5 @@ pytest tests/test_analytics.py -v
 - **20 Viva Questions & Comprehensive Answers**: [`docs/viva_questions.md`](docs/viva_questions.md)
 - **Automated Test Plan & Verification Matrix**: [`docs/test_plan.md`](docs/test_plan.md)
 - **College Micro-Project Report**: [`docs/report.md`](docs/report.md)
+#   S M A R T - L I B R A R Y - M A N A G E M E N T - A N D - B O O K - A N A L Y T I C S - S Y S T E M  
+ 
