@@ -146,44 +146,61 @@ SMART LIBRARY MANAGEMENT AND BOOK ANALYTICS SYSTEM/
 
 ## 🚀 Quick Start Guide
 
-### 1. Prerequisites
-- Python 3.11 installed.
-- Git (optional, for version control).
-
-### 2. Installation
-Install the required dependencies using pip:
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Launching the Application
-Run the application from the project root directory:
-```bash
-python main.py
-```
-*Note: On first startup, the application automatically initializes the SQLite database schema and seeds sample books, members, and the default administrator account.*
-
-### 4. Logging In
-- **Role**: Librarian / Staff (Admin)
-- **Username**: `admin`
-- **Password**: `admin123`
-
-*(Students may log in by selecting the "Student / Member" radio button and entering a valid Member ID, e.g., `MEM-001`)*.
+You can run the system in two ways:
+1. **Modern React Web Interface** (Primary, Interactive Web Application)
+2. **Tkinter Desktop Interface** (Legacy / Desktop Demo)
 
 ---
 
-## 🧪 Running the Automated Test Suite
+### Option 1: Modern React + FastAPI Web Application (Recommended)
 
-Run all 38 automated test cases using `pytest`:
+The modern stack runs a high-performance **FastAPI REST API** server on port 8000 and a **Vite + React + Tailwind CSS** frontend on port 5173.
+
+#### 1. Start the FastAPI Backend Server
+Open your terminal in the project root folder:
+```bash
+python api_server.py
+```
+> The REST API server will start at `http://127.0.0.1:8000`.  
+> Interactive Swagger API Documentation is available at `http://127.0.0.1:8000/docs`.
+
+#### 2. Start the React Frontend Development Server
+Open a second terminal in the `frontend` directory:
+```bash
+cd frontend
+npm run dev
+```
+> The React interface will be live at **`http://localhost:5173`**.
+
+#### 3. Log In to the Web Portal
+- **Username**: `admin`
+- **Password**: `admin123`
+- *(Or click the green **"1-Click Quick Demo Sign In"** button on the login screen for instant evaluation)*.
+
+---
+
+### Option 2: Tkinter Desktop GUI (Legacy Interface)
+
+To launch the standalone Tkinter desktop interface:
+```bash
+python main.py
+```
+- **Login Credentials**: `admin` / `admin123`
+
+---
+
+## 🧪 Running Automated Tests
+
+Run all 47 automated test cases (Backend Domain Models + Services + Analytics + Concurrency + REST API Endpoints) using `pytest`:
 ```bash
 pytest -v
 ```
-
-To run a specific test suite:
+To run specific test modules:
 ```bash
-pytest tests/test_e2e.py -v
-pytest tests/test_loans.py -v
-pytest tests/test_analytics.py -v
+pytest tests/test_api_server.py -v   # REST API endpoint tests
+pytest tests/test_e2e.py -v          # End-to-end circulation lifecycle
+pytest tests/test_analytics.py -v    # Pandas & NumPy analytics
+pytest tests/test_books.py -v        # Book model & functional pipelines
 ```
 
 ---
